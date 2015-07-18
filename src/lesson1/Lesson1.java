@@ -169,13 +169,11 @@ public class Lesson1 {
         /* YOUR CODE HERE */
         // 1
         Runnable r1 = () -> list.forEach(s -> System.out.print(s + " "));
-        r1.run();
-        System.out.println();
-        
+        new Thread(r1).start();
+
         // 2
         Runnable r2 = () -> list.forEach(System.out::print);
-        r2.run();
-        System.out.println();
+        new Thread(r2).start();
 
         // 3
         new Thread(() -> { 
