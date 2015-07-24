@@ -68,7 +68,7 @@ public class Lesson1 {
         list.stream()
                 .map(s -> s.charAt(0))
                 .forEach(System.out::print);
-        System.out.println();;
+        System.out.println();
     }
     
     private static String firstChar(String s) {
