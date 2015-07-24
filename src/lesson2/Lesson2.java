@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -54,10 +55,23 @@ public class Lesson2 {
         List<String> list = Arrays.asList("The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
         /* YOUR CODE HERE */
-        list.parallelStream()
+        // 1
+        list.stream()
                 .map(s -> s.toLowerCase())
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+         System.out.println(list);
+
+         // 2
+         list.stream()
+         .map(String::toLowerCase)
+         .collect(Collectors.toList());
+         System.out.println(list);
+
+         // 3
+         list.stream()
+         .map(String::toLowerCase)
+         .collect(Collectors.toList())
+         .forEach(System.out::println);
     }
 
     /**
@@ -69,10 +83,10 @@ public class Lesson2 {
         List<String> list = Arrays.asList("The", "Quick", "BROWN", "Fox", "Jumped", "Over", "The", "LAZY", "DOG");
 
         /* YOUR CODE HERE */
-        list.parallelStream()
+        list.stream()
                 .filter(n -> n.length() % 2 != 0)
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+        System.out.println(list);
     }
 
     /**
@@ -85,14 +99,11 @@ public class Lesson2 {
         List<String> list = Arrays.asList("The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
         /* YOUR CODE HERE */
-        StringBuffer sb = new StringBuffer();
         list.stream()
                 .skip(1)
                 .limit(3)
-                .forEach(s -> sb.append(s).append("-"));
-
-        String s = sb.toString().substring(0, sb.length()-1);
-        System.out.println(s);
+                .collect(Collectors.joining("-"));
+        System.out.println(list);
     }
 
     /**
@@ -118,8 +129,7 @@ public class Lesson2 {
                     .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
                     .distinct()
                     .collect(Collectors.toList());
-
-            list.stream().forEach(System.out::println);
+            System.out.println(list);
         }
     }
 
@@ -136,8 +146,7 @@ public class Lesson2 {
                     .distinct()
                     .sorted()
                     .collect(Collectors.toList());
-
-            list.stream().forEach(System.out::println);            
+            System.out.println(list);
         }
     }
 
@@ -147,14 +156,40 @@ public class Lesson2 {
     private void exercise7() throws IOException {
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH + "SonnetI.txt"), StandardCharsets.UTF_8)) {
             /* YOUR CODE HERE */
+            // 1
             List<String> list = reader.lines()
                     .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
                     .map(s -> s.toLowerCase())
                     .distinct()
                     .sorted((s1,s2) -> s1.length() - s2.length())
                     .collect(Collectors.toList());
+            System.out.println(list);
+        }
+        
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH + "SonnetI.txt"), StandardCharsets.UTF_8)) {
+            /* YOUR CODE HERE */
+            // 2
+            Pattern pat = Pattern.compile(WORD_REGEXP);
+            List<String> list2 = reader.lines()
+                    .flatMap(line -> pat.splitAsStream(line))
+                    .map(s -> s.toLowerCase())
+                    .distinct()
+                    .sorted((s1,s2) -> s1.length() - s2.length())
+                    .collect(Collectors.toList());
+            System.out.println(list2);            
+        }
 
-            list.stream().forEach(System.out::println);
+        try (BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH + "SonnetI.txt"), StandardCharsets.UTF_8)) {
+            /* YOUR CODE HERE */
+            // 3
+            Pattern pat = Pattern.compile(WORD_REGEXP);
+            List<String> list3 = reader.lines()
+                    .flatMap(pat::splitAsStream)
+                    .map(String::toLowerCase)
+                    .distinct()
+                    .sorted((s1,s2) -> s1.length() - s2.length())
+                    .collect(Collectors.toList());
+            System.out.println(list3); 
         }
     }
 
