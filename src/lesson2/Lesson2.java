@@ -157,6 +157,8 @@ public class Lesson2 {
     }
 
     /**
+     * Exercise 7
+     *
      * Modify exercise6 so that the words are sorted by length
      */
     private void exercise7() throws IOException {
