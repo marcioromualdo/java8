@@ -107,6 +107,8 @@ public class Lesson2 {
     }
 
     /**
+     * Exercise 4
+     *
      * Count the number of lines in the file using the BufferedReader provided
      */
     private void exercise4() throws IOException {
@@ -117,6 +119,8 @@ public class Lesson2 {
     }
 
     /**
+     * Exercise 5
+     *
      * Using the BufferedReader to access the file, create a list of words with no duplicates contained in the file.
      * Print the words.
      * 
@@ -134,6 +138,8 @@ public class Lesson2 {
     }
 
     /**
+     * Exercise 6
+     *
      * Using the BufferedReader to access the file create a list of words from the file, converted to lower-case and
      * with duplicates removed, which is sorted by natural order. Print the contents of the list.
      */
