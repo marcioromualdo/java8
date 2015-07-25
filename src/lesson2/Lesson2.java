@@ -63,14 +63,14 @@ public class Lesson2 {
 
          // 2
          list.stream()
-         .map(String::toLowerCase)
-         .collect(Collectors.toList());
+             .map(String::toLowerCase)
+             .collect(Collectors.toList());
          System.out.println(list);
 
          // 3
          list.stream()
-         .map(String::toLowerCase)
-         .collect(Collectors.toList())
+             .map(String::toLowerCase)
+             .collect(Collectors.toList())
          .forEach(System.out::println);
     }
 
@@ -178,26 +178,26 @@ public class Lesson2 {
             /* YOUR CODE HERE */
             // 2
             Pattern pat = Pattern.compile(WORD_REGEXP);
-            List<String> list2 = reader.lines()
+            List<String> list = reader.lines()
                     .flatMap(line -> pat.splitAsStream(line))
                     .map(s -> s.toLowerCase())
                     .distinct()
                     .sorted((s1,s2) -> s1.length() - s2.length())
                     .collect(Collectors.toList());
-            System.out.println(list2);            
+            System.out.println(list);            
         }
 
         try (BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH + "SonnetI.txt"), StandardCharsets.UTF_8)) {
             /* YOUR CODE HERE */
             // 3
             Pattern pat = Pattern.compile(WORD_REGEXP);
-            List<String> list3 = reader.lines()
+            List<String> list = reader.lines()
                     .flatMap(pat::splitAsStream)
                     .map(String::toLowerCase)
                     .distinct()
                     .sorted((s1,s2) -> s1.length() - s2.length())
                     .collect(Collectors.toList());
-            System.out.println(list3); 
+            System.out.println(list); 
         }
     }
 
